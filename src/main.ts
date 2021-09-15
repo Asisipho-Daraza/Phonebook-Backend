@@ -3,20 +3,20 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-	const app = await NestFactory.create(AppModule, { cors: true });
-	
-	let logger = new Logger();
+  const app = await NestFactory.create(AppModule, { cors: true });
 
-	app.enableCors({
-		origin: ['http://localhost:4200'],
-		credentials: true
-	});
-	app.setGlobalPrefix('api');
+  let logger = new Logger();
 
-	const port = process.env.PORT || 3000;
+  app.enableCors({
+    origin: ['http://localhost:4200'],
+    credentials: true,
+  });
+  app.setGlobalPrefix('api');
 
-	await app.listen(port);
+  const port = process.env.PORT || 3000;
 
-	logger.log(`Listening on port: ${port}`)
+  await app.listen(port);
+
+  logger.log(`Listening on port: ${port}`);
 }
 bootstrap();
